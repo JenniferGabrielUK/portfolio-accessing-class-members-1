@@ -1,0 +1,46 @@
+// portfolio-accessing-class-members-1.cpp : This file contains the 'main' function. Program execution begins and ends there.
+#include <iostream>
+#include <string>
+
+class Player {
+public:
+    //atrributes
+    std::string name;
+    int health;
+    int xp;
+    //methods
+    void talk(std::string text_to_say) { std::cout << name << " says: " << text_to_say << std::endl; }
+    bool is_dead() { return false; }
+};
+
+class Account {
+public:
+    std::string name;
+    double balance;
+    bool deposit(double bal) { balance += bal; std::cout << "In deposit." << std::endl; return true; }
+    bool withdraw(double bal) { balance -= bal; std::cout << "In withdraw." << std::endl; return true; }
+};
+
+int main()
+{
+    Player jenny;
+    jenny.name = "Jenny";
+    jenny.health = 100;                           //dot operator for public attribute
+    jenny.xp = 12;                                                  
+    jenny.talk("Hi World!");                      //dot operator for talk member method
+    Player* enemy = new Player;
+    (*enemy).name = "Enemy";                      //dot operator and de-referenced pointer
+    enemy->xp = 15;                               //arrow operator to access attribute
+    enemy->talk("Get ready to battle!");
+    Account jenny_account;
+    jenny_account.name = "Jenny's Accout";
+    jenny_account.balance = 3330.01;
+    jenny_account.deposit(1001.01);
+    jenny_account.withdraw(500.0);
+    Account* elizabeth_account = new Account;
+    elizabeth_account->name = "Elizabeth's Account";
+    elizabeth_account->balance = 10000.00;
+    elizabeth_account->deposit(1001.01);
+    elizabeth_account->withdraw(500.0);
+    return 0;
+}
